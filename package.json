@@ -1,0 +1,12 @@
+{
+  "name": "@novawaveui/tailwind-composer",
+  "version": "1.0.0",
+  "description": "Tailwind Composer is a library that allows you to create complicated Tailwind CSS component variants with ease.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kyle Gagnon <kmgagnon99@gmail.com>",
+  "license": "ISC"
+}
