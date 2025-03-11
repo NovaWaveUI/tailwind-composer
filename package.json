@@ -4,9 +4,22 @@
   "description": "Tailwind Composer is a library that allows you to create complicated Tailwind CSS component variants with ease.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "Kyle Gagnon <kmgagnon99@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tailwindcss": "^4.0.12",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  },
+  "dependencies": {
+    "tailwind-merge": "^3.0.2"
+  }
 }

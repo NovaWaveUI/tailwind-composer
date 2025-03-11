@@ -9,7 +9,8 @@
 			"extensions": [
 				"vitest.explorer",
 				"PKief.material-icon-theme",
-				"RobbOwen.synthwave-vscode"
+				"RobbOwen.synthwave-vscode",
+				"esbenp.prettier-vscode"
 			]
 		}
 	}
