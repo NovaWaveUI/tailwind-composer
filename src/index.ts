@@ -5,6 +5,7 @@ import {
   NonSlotVariantReturn,
   VariantValue,
 } from './types';
+import { mergeVariantsNoSlots } from './merge';
 
 export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
   config: NonSlotConfig<TVariants>
@@ -83,33 +84,35 @@ export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
     return resultingStyle;
   };
 
-  // Create the extend function
-  variantFunction.extend = (newConfig: Partial<NonSlotConfig<TVariants>>) => {
-    const mergedConfig: NonSlotConfig<TVariants> = {
-      base: twMerge(base, newConfig.base ?? ''),
-      extends: [...extendsProp, ...(newConfig.extends ?? [])],
-      variants: {
-        ...variants,
-        ...(newConfig.variants
-          ? (Object.fromEntries(
-              Object.entries(newConfig.variants).map(([key, value]) => [
-                key,
-                { ...(variants[key] ?? {}), ...value },
-              ])
-            ) as TVariants)
-          : {}),
-      } as TVariants,
-      compoundVariants: [
-        ...compoundVariants,
-        ...(newConfig.compoundVariants ?? []),
-      ],
-      defaultVariants: {
-        ...defaultVariants,
-        ...(newConfig.defaultVariants ?? {}),
-      },
+  /**
+   *
+   * @param newConfig The new additional configuration to add to the variant function
+   * @returns
+   */
+  variantFunction.extend = <TNewVariants extends VariantDefNoSlots>(
+    newConfig: Partial<NonSlotConfig<TNewVariants>>
+  ): NonSlotVariantReturn<TVariants & TNewVariants> => {
+    const extendedVariants = mergeVariantsNoSlots(
+      variants,
+      newConfig.variants ?? {}
+    );
+    const extendedDefaultVariants = {
+      ...defaultVariants,
+      ...(newConfig.defaultVariants ?? {}),
     };
+    const extendedCompoundVariants = [
+      ...compoundVariants,
+      ...(newConfig.compoundVariants ?? []),
+    ];
+    const extendedBase = twMerge(base, newConfig.base ?? '');
 
-    return createNonSlotVariants(mergedConfig);
+    return createNonSlotVariants<TVariants & TNewVariants>({
+      base: extendedBase,
+      extends: [...extendsProp, ...(newConfig.extends ?? [])],
+      variants: extendedVariants as TVariants & TNewVariants,
+      compoundVariants: extendedCompoundVariants,
+      defaultVariants: extendedDefaultVariants,
+    });
   };
 
   // Now for now, we will return the variant function

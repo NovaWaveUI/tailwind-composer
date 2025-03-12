@@ -17,13 +17,27 @@
  *  }
  * }
  */
-export type VariantDefNoSlots = Record<string, Record<string, string>>;
+
+export type VariantDefNoSlots = {
+  [key: string]: { [value: string]: string };
+};
+
+export type VariantKeys<TVariants extends VariantDefNoSlots> = keyof TVariants;
+
+export type VariantValues<
+  TVariants extends VariantDefNoSlots,
+  K extends keyof TVariants
+> = keyof TVariants[K];
+
+export type VariantValue<TVariants extends VariantDefNoSlots> = {
+  [K in keyof TVariants]?: VariantValues<TVariants, K>;
+};
 
 export type VariantNoSlots<
   TVariants extends Record<string, Record<string, string>>
 > = TVariants;
 
-export interface NonSlotConfig<TVariants extends VariantDefNoSlots> {
+export interface NonSlotConfig<TVariants extends Record<string, any>> {
   /**
    * The base styles of the component
    */
@@ -37,7 +51,7 @@ export interface NonSlotConfig<TVariants extends VariantDefNoSlots> {
   /**
    * The variants for the component
    */
-  variants: VariantNoSlots<TVariants>;
+  variants: TVariants;
 
   /**
    * A combination of different variants and when they would apply
@@ -56,15 +70,9 @@ export interface NonSlotConfig<TVariants extends VariantDefNoSlots> {
   };
 }
 
-export type VariantValue<TVariants extends VariantDefNoSlots> = Partial<{
-  [K in keyof TVariants]: keyof TVariants[K];
-}>;
-
 export type NonSlotVariantReturn<TVariants extends VariantDefNoSlots> = {
-  (
-    variantValues?: Partial<{ [K in keyof TVariants]: keyof TVariants[K] }>
-  ): string;
-  extend: (
-    config: Partial<NonSlotConfig<TVariants>>
-  ) => NonSlotVariantReturn<TVariants>;
+  (variantValues?: VariantValue<TVariants>): string;
+  extend: <TNewVariants extends VariantDefNoSlots>(
+    config: Partial<NonSlotConfig<TNewVariants>>
+  ) => NonSlotVariantReturn<TVariants & TNewVariants>;
 };
