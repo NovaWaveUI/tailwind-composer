@@ -2,7 +2,7 @@
  * Functions that are used to help merge two configurations
  */
 
-import { VariantDefNoSlots } from './types';
+import { VariantDefNoSlots } from './types/non-slots';
 
 export const mergeVariantsNoSlots = <
   OldVariants extends VariantDefNoSlots,
