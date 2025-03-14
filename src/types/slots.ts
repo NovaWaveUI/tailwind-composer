@@ -1,4 +1,4 @@
-import { IsBooleanVariant } from '../types';
+import { ClassName, IsBooleanVariant } from '../types';
 
 /**
  * Defines the slots for a component.
@@ -11,7 +11,7 @@ import { IsBooleanVariant } from '../types';
  *   title: "text-lg font-bold"
  * }
  */
-export type SlotsConfig = Record<string, string>;
+export type SlotsConfig = Record<string, ClassName>;
 
 /**
  * Defines the variants for a slotted component.
@@ -76,7 +76,10 @@ export interface SlottedConfig<
         | keyof TVariants[K]
         | Array<keyof TVariants[K]>
         | (TVariants[K] extends { true: any; false?: any } ? boolean : never);
-    } & { class?: Partial<TSlots>; className?: Partial<TSlots> }
+    } & {
+      class?: { [K in keyof TSlots]?: ClassName };
+      className?: { [K in keyof TSlots]?: ClassName };
+    }
   >;
 
   /**
@@ -89,7 +92,7 @@ export interface SlottedConfig<
   };
 }
 
-export type SlotVariantFn = (className?: string | string[]) => string;
+export type SlotVariantFn = (className?: ClassName) => string;
 
 /**
  * The return type of the function created by `createSlottedVariants`.
@@ -102,7 +105,7 @@ export type SlottedVariantReturn<
     [K in keyof TSlots]: SlotVariantFn;
   };
 
-  /* extend: <TNewVariants extends VariantDefSlots, TNewSlots extends SlotsConfig>(
+  extend: <TNewVariants extends VariantDefSlots, TNewSlots extends SlotsConfig>(
     config: Partial<SlottedConfig<TNewSlots, TNewVariants>>
-  ) => SlottedVariantReturn<TSlots & TNewSlots, TVariants & TNewVariants>; */
+  ) => SlottedVariantReturn<TSlots & TNewSlots, TVariants & TNewVariants>;
 };

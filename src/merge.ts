@@ -3,6 +3,7 @@
  */
 
 import { VariantDefNoSlots } from './types/non-slots';
+import { VariantDefSlots } from './types/slots';
 
 export const mergeVariantsNoSlots = <
   OldVariants extends VariantDefNoSlots,
@@ -31,6 +32,53 @@ export const mergeVariantsNoSlots = <
   }
 
   // Add any remaining new variants that were not in old variants
+  for (const variant in newVariants) {
+    if (!oldVariants.hasOwnProperty(variant)) {
+      (mergedVariants as any)[variant] = newVariants[variant];
+    }
+  }
+
+  return mergedVariants as OldVariants & NewVariants;
+};
+
+/**
+ * Merges two slotted variant configurations.
+ * - If a variant exists in both, it merges their slot styles.
+ * - If a slot exists in both variants, it merges the styles instead of replacing.
+ */
+export const mergeVariantsSlots = <
+  OldVariants extends VariantDefSlots,
+  NewVariants extends VariantDefSlots
+>(
+  oldVariants: OldVariants,
+  newVariants: NewVariants
+): OldVariants & NewVariants => {
+  const mergedVariants: Partial<OldVariants & NewVariants> = {};
+
+  for (const variant in oldVariants) {
+    const mergedValues = { ...oldVariants[variant] };
+
+    if (newVariants.hasOwnProperty(variant)) {
+      for (const value in newVariants[variant]) {
+        if (mergedValues.hasOwnProperty(value)) {
+          // Merge slot styles instead of replacing them
+          mergedValues[value] = {
+            ...mergedValues[value], // Preserve old slot styles
+            ...newVariants[variant][value], // Add new slot styles
+          };
+        } else {
+          // If the variant value is new, add it
+          mergedValues[value] = newVariants[variant][
+            value
+          ] as unknown as (typeof mergedValues)[typeof value];
+        }
+      }
+    }
+
+    (mergedVariants as any)[variant] = mergedValues;
+  }
+
+  // Add completely new variants that didn't exist in the old configuration
   for (const variant in newVariants) {
     if (!oldVariants.hasOwnProperty(variant)) {
       (mergedVariants as any)[variant] = newVariants[variant];
