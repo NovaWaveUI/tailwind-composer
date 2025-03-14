@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createSlottedVariants } from '../index';
+import { ExtractVariantProps } from '../types';
 
 describe('createSlottedVariants', () => {
   it('should create a slotted variant function', () => {
@@ -301,5 +302,35 @@ describe('createSlottedVariants', () => {
     expect(header()).toBe('p-4 bg-gray-100');
     expect(title()).toBe('font-bold text-black text-sm');
     expect(title('text-red-500')).toBe('font-bold text-sm text-red-500');
+  });
+
+  it('should show the correct variants and variant values', () => {
+    const testStyles = createSlottedVariants({
+      slots: {
+        root: 'flex flex-col',
+        header: 'p-4 bg-gray-100',
+        title: 'text-lg font-bold',
+      },
+      variants: {
+        color: {
+          primary: { root: 'bg-blue-500', title: 'text-white' },
+          secondary: {
+            root: 'bg-gray-500',
+            title: 'text-white',
+            header: 'text-gray-700',
+          },
+        },
+        size: {
+          sm: { root: 'text-sm', title: 'text-sm' },
+          md: { root: 'text-base', title: 'text-base' },
+        },
+      },
+    });
+
+    type Variants = ExtractVariantProps<typeof testStyles>;
+    const variants: Variants = {
+      color: 'primary',
+      size: 'sm',
+    };
   });
 });
