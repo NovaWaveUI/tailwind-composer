@@ -8,13 +8,13 @@ importers:
 
   .:
     dependencies:
-      '@commitlint/cli':
-        specifier: ^19.8.0
-        version: 19.8.0(@types/node@22.13.10)(typescript@5.8.2)
       tailwind-merge:
         specifier: ^3.0.2
         version: 3.0.2
     devDependencies:
+      '@commitlint/cli':
+        specifier: ^19.8.0
+        version: 19.8.0(@types/node@22.13.10)(typescript@5.8.2)
       '@eslint/js':
         specifier: ^9.22.0
         version: 9.22.0
