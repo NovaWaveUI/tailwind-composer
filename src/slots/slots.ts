@@ -5,9 +5,9 @@ import {
   SlottedVariantReturn,
   VariantDefSlots,
   VariantValue,
-} from '../types/slots';
-import { mergeClassNames } from '../utils';
-import { mergeVariantsSlots } from '../merge';
+} from '../types/slots.js';
+import { mergeClassNames } from '../utils.js';
+import { mergeVariantsSlots } from '../merge.js';
 
 export function createSlottedVariants<
   TSlots extends SlotsConfig,

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { createNonSlotVariants } from '../index';
-import { ExtractVariantProps } from '../types';
+import { createNonSlotVariants } from '../index.js';
+import { ExtractVariantProps } from '../types.js';
 
 describe('createNonSlotVariants', () => {
   it('should return base styles when no variants are provided', () => {

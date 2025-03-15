@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { createSlottedVariants } from '../index';
-import { ExtractVariantProps } from '../types';
+import { createSlottedVariants } from '../index.js';
+import { ExtractVariantProps } from '../types.js';
 
 describe('createSlottedVariants', () => {
   it('should create a slotted variant function', () => {

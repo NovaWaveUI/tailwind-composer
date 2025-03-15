@@ -1,2 +1,2 @@
-export { createNonSlotVariants } from './slots/non-slots';
-export { createSlottedVariants } from './slots/slots';
+export { createNonSlotVariants } from './slots/non-slots.js';
+export { createSlottedVariants } from './slots/slots.js';

@@ -1,4 +1,4 @@
-import { ClassName, IsBooleanVariant } from '../types';
+import { ClassName, IsBooleanVariant } from '../types.js';
 
 /**
  * Non-slot types

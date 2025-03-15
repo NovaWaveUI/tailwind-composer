@@ -1,11 +1,11 @@
 import { twMerge } from 'tailwind-merge';
-import { mergeVariantsNoSlots } from '../merge';
+import { mergeVariantsNoSlots } from '../merge.js';
 import {
   NonSlotConfig,
   NonSlotVariantReturn,
   VariantDefNoSlots,
   VariantValue,
-} from '../types/non-slots';
+} from '../types/non-slots.js';
 
 export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
   config: NonSlotConfig<TVariants>
