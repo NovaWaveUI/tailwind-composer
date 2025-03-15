@@ -622,6 +622,7 @@ describe('createNonSlotVariants', () => {
   });
 
   it('should test the extract variant type', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const getClassName = createNonSlotVariants({
       base: 'base-style',
       variants: {

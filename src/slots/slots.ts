@@ -11,7 +11,7 @@ import { mergeVariantsSlots } from '../merge';
 
 export function createSlottedVariants<
   TSlots extends SlotsConfig,
-  TVariants extends VariantDefSlots
+  TVariants extends VariantDefSlots,
 >(
   config: SlottedConfig<TSlots, TVariants>
 ): SlottedVariantReturn<TSlots, TVariants> {
@@ -50,8 +50,8 @@ export function createSlottedVariants<
             variantValue === true
               ? 'true'
               : variantValue === false && 'false' in variants[variant]
-              ? 'false'
-              : undefined;
+                ? 'false'
+                : undefined;
         } else {
           variantValue = variantValue ?? Object.keys(variants[variant])[0];
         }
@@ -115,7 +115,7 @@ export function createSlottedVariants<
    */
   returnValue.extend = <
     TNewVariants extends VariantDefSlots,
-    TNewSlots extends SlotsConfig
+    TNewSlots extends SlotsConfig,
   >(
     newConfig: Partial<SlottedConfig<TNewSlots, TNewVariants>>
   ): SlottedVariantReturn<TSlots & TNewSlots, TVariants & TNewVariants> => {

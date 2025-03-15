@@ -35,7 +35,7 @@ export type VariantDefSlots = Record<
  */
 export type VariantValues<
   TVariants extends VariantDefSlots,
-  K extends keyof TVariants
+  K extends keyof TVariants,
 > = keyof TVariants[K];
 
 /**
@@ -50,7 +50,7 @@ export type VariantValue<TVariants extends VariantDefSlots> = {
  */
 export interface SlottedConfig<
   TSlots extends SlotsConfig,
-  TVariants extends VariantDefSlots
+  TVariants extends VariantDefSlots,
 > {
   /**
    * Defines the base styles for each slot.
@@ -99,7 +99,7 @@ export type SlotVariantFn = (className?: ClassName) => string;
  */
 export type SlottedVariantReturn<
   TSlots extends SlotsConfig,
-  TVariants extends VariantDefSlots
+  TVariants extends VariantDefSlots,
 > = {
   (variantValues?: VariantValue<TVariants>): {
     [K in keyof TSlots]: SlotVariantFn;

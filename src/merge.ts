@@ -7,7 +7,7 @@ import { VariantDefSlots } from './types/slots';
 
 export const mergeVariantsNoSlots = <
   OldVariants extends VariantDefNoSlots,
-  NewVariants extends VariantDefNoSlots
+  NewVariants extends VariantDefNoSlots,
 >(
   oldVariants: OldVariants,
   newVariants: NewVariants
@@ -20,7 +20,7 @@ export const mergeVariantsNoSlots = <
     const mergedValue = { ...oldVariants[variant] };
 
     // If the variant is also in the new variants, merge the values
-    if (newVariants.hasOwnProperty(variant)) {
+    if (Object.prototype.hasOwnProperty.call(newVariants, variant)) {
       for (const value in newVariants[variant]) {
         // Add or overwrite the value from newVariants
         (mergedValue as any)[value] = newVariants[variant][value];
@@ -33,7 +33,7 @@ export const mergeVariantsNoSlots = <
 
   // Add any remaining new variants that were not in old variants
   for (const variant in newVariants) {
-    if (!oldVariants.hasOwnProperty(variant)) {
+    if (!Object.prototype.hasOwnProperty.call(oldVariants, variant)) {
       (mergedVariants as any)[variant] = newVariants[variant];
     }
   }
@@ -48,7 +48,7 @@ export const mergeVariantsNoSlots = <
  */
 export const mergeVariantsSlots = <
   OldVariants extends VariantDefSlots,
-  NewVariants extends VariantDefSlots
+  NewVariants extends VariantDefSlots,
 >(
   oldVariants: OldVariants,
   newVariants: NewVariants
@@ -58,9 +58,9 @@ export const mergeVariantsSlots = <
   for (const variant in oldVariants) {
     const mergedValues = { ...oldVariants[variant] };
 
-    if (newVariants.hasOwnProperty(variant)) {
+    if (Object.prototype.hasOwnProperty.call(newVariants, variant)) {
       for (const value in newVariants[variant]) {
-        if (mergedValues.hasOwnProperty(value)) {
+        if (Object.prototype.hasOwnProperty.call(mergedValues, value)) {
           // Merge slot styles instead of replacing them
           mergedValues[value] = {
             ...mergedValues[value], // Preserve old slot styles
@@ -80,7 +80,7 @@ export const mergeVariantsSlots = <
 
   // Add completely new variants that didn't exist in the old configuration
   for (const variant in newVariants) {
-    if (!oldVariants.hasOwnProperty(variant)) {
+    if (!Object.prototype.hasOwnProperty.call(oldVariants, variant)) {
       (mergedVariants as any)[variant] = newVariants[variant];
     }
   }

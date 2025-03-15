@@ -28,7 +28,7 @@ export type VariantKeys<TVariants extends VariantDefNoSlots> = keyof TVariants;
 
 export type VariantValues<
   TVariants extends VariantDefNoSlots,
-  K extends keyof TVariants
+  K extends keyof TVariants,
 > = keyof TVariants[K];
 
 export type VariantValue<TVariants extends VariantDefNoSlots> = {
@@ -36,21 +36,16 @@ export type VariantValue<TVariants extends VariantDefNoSlots> = {
 };
 
 export type VariantNoSlots<
-  TVariants extends Record<string, Record<string, string>>
+  TVariants extends Record<string, Record<string, string>>,
 > = TVariants;
 
 export interface NonSlotConfig<
-  TVariants extends Record<string, Record<string, string>>
+  TVariants extends Record<string, Record<string, string>>,
 > {
   /**
    * The base styles of the component
    */
   base?: string | string[];
-
-  /**
-   * A set of predefined styles
-   */
-  extends?: string[];
 
   /**
    * The variants for the component

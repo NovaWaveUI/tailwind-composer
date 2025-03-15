@@ -281,7 +281,7 @@ describe('createSlottedVariants', () => {
     expect(header()).toBe('p-4 bg-gray-100');
     expect(title()).toBe('font-bold text-white text-sm');
 
-    let extendedStyle = testStyles.extend({
+    const extendedStyle = testStyles.extend({
       variants: {
         color: {
           warning: {
@@ -305,6 +305,7 @@ describe('createSlottedVariants', () => {
   });
 
   it('should show the correct variants and variant values', () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const testStyles = createSlottedVariants({
       slots: {
         root: 'flex flex-col',
@@ -328,6 +329,7 @@ describe('createSlottedVariants', () => {
     });
 
     type Variants = ExtractVariantProps<typeof testStyles>;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const variants: Variants = {
       color: 'primary',
       size: 'sm',

@@ -13,7 +13,6 @@ export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
   // Expand the config
   const {
     base: baseProp = '',
-    extends: extendsProp = [],
     variants = {},
     compoundVariants = [],
     defaultVariants = {},
@@ -23,7 +22,7 @@ export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
   // If the base style exists and is a string, use it
   // If the base style exists and is an array, join it
   // If the base style does not exist, use an empty string
-  const base = Array.isArray(baseProp) ? baseProp.join(' ') : baseProp ?? '';
+  const base = Array.isArray(baseProp) ? baseProp.join(' ') : (baseProp ?? '');
 
   // Skipping extends for now
 
@@ -95,7 +94,7 @@ export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
         // If it does not exist, use an empty string
         const consolidatedClassName = Array.isArray(compoundVariant.className)
           ? compoundVariant.className.join(' ')
-          : compoundVariant.className ?? '';
+          : (compoundVariant.className ?? '');
 
         // If the class exists, check if it is an array or a string
         // If it is an array, join it
@@ -103,7 +102,7 @@ export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
         // If it does not exist, use an empty string
         const consolidatedClass = Array.isArray(compoundVariant.class)
           ? compoundVariant.class.join(' ')
-          : compoundVariant.class ?? '';
+          : (compoundVariant.class ?? '');
 
         // Merge the style with the className
         const className = twMerge(consolidatedClassName, consolidatedClass);
@@ -118,7 +117,7 @@ export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
     // If className does not exist, use an empty string
     const className = Array.isArray(props.className)
       ? props.className.join(' ')
-      : props.className ?? '';
+      : (props.className ?? '');
 
     // Merge the style with the className
     resultingStyle = twMerge(resultingStyle, className as string);
@@ -150,7 +149,6 @@ export function createNonSlotVariants<TVariants extends VariantDefNoSlots>(
 
     return createNonSlotVariants<TVariants & TNewVariants>({
       base: extendedBase,
-      extends: [...extendsProp, ...(newConfig.extends ?? [])],
       variants: extendedVariants as TVariants & TNewVariants,
       compoundVariants: extendedCompoundVariants,
       defaultVariants: extendedDefaultVariants,
