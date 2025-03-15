@@ -20,3 +20,26 @@ export const isBoolean = (value: unknown): boolean => {
   }
   return false;
 };
+
+/**
+ * Merges a given class name (which can be a string, an array of strings, or undefined) into a single string.
+ * @param className - The className to merge. It can be a string, an array of strings, or undefined.
+ * @returns A single string containing all class names, separated by spaces.
+ *          If the input is undefined, an empty string is returned.
+ */
+export const mergeClassNames = (
+  className: string | string[] | undefined
+): string => {
+  // If the className is undefined, return an empty string
+  if (className === undefined) {
+    return '';
+  }
+
+  // If the className is an array, join it with a space
+  if (Array.isArray(className)) {
+    return className.join(' ');
+  }
+
+  // If the className is a string, return it
+  return className;
+};
