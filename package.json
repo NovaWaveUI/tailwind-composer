@@ -1,6 +1,6 @@
 {
   "name": "@novawaveui/tailwind-composer",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Tailwind Composer is a library that allows you to create complicated Tailwind CSS component variants with ease.",
   "type": "module",
   "main": "./dist/index.js",
@@ -29,6 +29,10 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NovaWaveUI/tailwind-composer"
   },
   "keywords": [
     "tailwind",

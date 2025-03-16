@@ -2,15 +2,16 @@
 
 Tailwind Composer is a powerful, flexible utility for building complex, multi-slotted, reactive component styles using Tailwind CSS. Designed to integrate seamlessly with React, it leverages twMerge to efficiently handle class merging while offering deep extensibility and customization.
 
-## 🚀 Why Tailwind Composer?
+## Why Tailwind Composer?
 
 Unlike traditional approaches, Tailwind Composer is designed to:
-✔️ Support slot-based designs – perfect for components with multiple elements (e.g., buttons with icons, cards with headers & footers).
-✔️ Provide extendable styles – dynamically add new variants without redefining everything.
-✔️ Leverage a hierarchical class system – intelligently applies base styles, variants, compound variants, and extensions.
-✔️ Ensure type safety – with full TypeScript support, ensuring valid variants and styles.
 
-## 📌 Inspiration
+- Support slot-based designs – perfect for components with multiple elements (e.g., buttons with icons, cards with headers & footers).
+- Provide extendable styles – dynamically add new variants without redefining everything.
+- Leverage a hierarchical class system – intelligently applies base styles, variants, compound variants, and extensions.
+- Ensure type safety – with full TypeScript support, ensuring valid variants and styles.
+
+## Inspiration
 
 This library is heavily inspired by the amazing work of tailwind-variants. I truly love their approach, and Tailwind Composer was born from my desire to build something similar while exploring different ideas around extendability and customization.
 
@@ -22,17 +23,15 @@ Extending works differently, allowing for more flexibility in modifying existing
 No built-in responsive variants (yet) – currently, it focuses on base styles and states.
 Designed with a provider-based global customization system in mind.
 
-## 📦 Installation
+## Installation
 
 ```sh
-Copy
-Edit
 pnpm add tailwind-composer
 # or
 npm install tailwind-composer
 ```
 
-## ✨ Usage
+## Usage
 
 ### Non-Slotted Components
 
@@ -119,7 +118,7 @@ export function Card({ color, children }) {
 }
 ```
 
-## 🔗 Extending Styles
+## Extending Styles
 
 One of the most powerful features of Tailwind Composer is dynamic extensibility. You can extend existing styles without redefining the entire configuration.
 
@@ -142,26 +141,28 @@ const extendedButtonStyles = buttonStyles.extend({
 });
 ```
 
-## 📖 Documentation
+## Documentation
 
-📚 Full documentation is coming soon! Stay tuned for guides on:
+Full documentation is coming soon! Stay tuned for guides on:
 
-Using extend() to modify global styles.
-Best practices for component theming.
-How Tailwind Composer integrates with NovaWaveUIProvider.
+- Using extend() to modify global styles.
+- Best practices for component theming.
+- How Tailwind Composer integrates with NovaWaveUIProvider.
 
-## 🛠️ Contributing
+## Contributing
 
 I built Tailwind Composer because I love UI development and wanted to explore more customizable ways to handle variants and styles in Tailwind. While this project is something I made for myself first, I’d love for others to use and contribute!
 
 If you find bugs, have ideas, or want to contribute, feel free to open an issue or PR on GitHub. 🚀
 
-## 📜 License
+## License
 
 MIT License. Feel free to use and modify it as needed.
 
-## 🔥 Final Thoughts
+## Final Thoughts
 
 This library was made with passion and curiosity. It may not be perfect, but it's something I believe in—and I hope you find it useful too.
 
 If you like what I’m building, feel free to give it a ⭐️ on GitHub! 🚀
+
+**Note**: AI was used to generate parts of this README, but all content has been reviewed and edited by me to ensure clarity and accuracy. I'm not great at writing, and I appreciate your understanding! 😊
